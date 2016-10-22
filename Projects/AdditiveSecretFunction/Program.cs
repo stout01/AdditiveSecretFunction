@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AdditiveSecretFunction
 {
@@ -18,12 +16,15 @@ namespace AdditiveSecretFunction
 
             var primes = PrimeNumberHelper.GetPrimesLessThan(limit);
 
+            var secret = SecretService.SecretFunction;
+
             foreach (var x in primes)
             {
                 for (var index = x; index < primes.Count; index++)
                 {
                     var y = primes[index];
-                    if (SecretService.Secret(x + y) != SecretService.Secret(x) + SecretService.Secret(y))
+
+                    if (secret(x + y) != secret(x) + secret(y))
                     {
                         Console.WriteLine("Not Additive");
                         Console.Read();
