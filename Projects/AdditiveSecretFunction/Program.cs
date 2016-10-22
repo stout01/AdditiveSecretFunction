@@ -18,11 +18,11 @@ namespace AdditiveSecretFunction
 
             var primes = PrimeNumberHelper.GetPrimesLessThan(limit);
 
-            var used = new List<int>();
             foreach (var x in primes)
             {
-                foreach (var y in primes.Except(used))
+                for (var index = x; index < primes.Count; index++)
                 {
+                    var y = primes[index];
                     if (SecretService.Secret(x + y) != SecretService.Secret(x) + SecretService.Secret(y))
                     {
                         Console.WriteLine("Not Additive");
@@ -30,7 +30,6 @@ namespace AdditiveSecretFunction
                         Environment.Exit(0);
                     }
                 }
-                used.Add(x);
             }
 
             Console.WriteLine("Additive");
