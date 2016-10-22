@@ -11,7 +11,6 @@ namespace AdditiveSecretFunction
             Parser.Default.ParseArgumentsStrict(args, options, OnFail);
 
             var primes = PrimeNumberHelper.GetPrimesLessThan(options.Limit);
-
             var secret = SecretService.SecretFunction;
 
             foreach (var x in primes)
@@ -22,15 +21,13 @@ namespace AdditiveSecretFunction
 
                     if (secret(x + y) != secret(x) + secret(y))
                     {
-                        Console.WriteLine("Not Additive");
-                        Console.Read();
+                        Console.WriteLine("The secret function is not additive");
                         Environment.Exit(0);
                     }
                 }
             }
 
-            Console.WriteLine("Additive");
-            Console.Read();
+            Console.WriteLine("The secret function is additive");
         }
 
         private static void OnFail()
