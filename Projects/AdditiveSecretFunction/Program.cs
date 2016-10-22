@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace AdditiveSecretFunction
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             int limit;
             if (!int.TryParse(args[0], out limit))
@@ -23,7 +23,7 @@ namespace AdditiveSecretFunction
             {
                 foreach (var y in primes.Except(used))
                 {
-                    if (SecretService.Secret(x + y) != (SecretService.Secret(x) + SecretService.Secret(y)))
+                    if (SecretService.Secret(x + y) != SecretService.Secret(x) + SecretService.Secret(y))
                     {
                         Console.WriteLine("Not Additive");
                         Console.Read();
