@@ -1,4 +1,5 @@
 ﻿using System;
+using CommandLine;
 
 namespace AdditiveSecretFunction
 {
@@ -6,15 +7,10 @@ namespace AdditiveSecretFunction
     {
         private static void Main(string[] args)
         {
-            int limit;
-            if (!int.TryParse(args[0], out limit))
-            {
-                Console.WriteLine("Invalid input");
-                Console.Read();
-                Environment.Exit(0);
-            }
+            var options = new Options();
+            Parser.Default.ParseArgumentsStrict(args, options, OnFail);
 
-            var primes = PrimeNumberHelper.GetPrimesLessThan(limit);
+            var primes = PrimeNumberHelper.GetPrimesLessThan(options.Limit);
 
             var secret = SecretService.SecretFunction;
 
@@ -35,6 +31,11 @@ namespace AdditiveSecretFunction
 
             Console.WriteLine("Additive");
             Console.Read();
+        }
+
+        private static void OnFail()
+        {
+            Environment.Exit(-1);
         }
     }
 }
