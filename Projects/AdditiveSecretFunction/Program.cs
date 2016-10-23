@@ -3,6 +3,7 @@ using AdditiveSecretFunction.Services.Abstract;
 using AdditiveSecretFunction.Services.Concrete;
 using Autofac;
 using CommandLine;
+using Resource = AdditiveSecretFunction.Resources.Program;
 
 namespace AdditiveSecretFunction
 {
@@ -21,8 +22,8 @@ namespace AdditiveSecretFunction
             var secret = secretFactory.CreateNewSecretFunction();
 
             Console.WriteLine(additiveService.IsAdditive(secret, options.Limit)
-                ? "The secret function is additive"
-                : "The secret function is not additive");
+                ? Resource.IsAdditive
+                : Resource.IsNotAdditive);
         }
 
         private static IContainer BuildContainer()
