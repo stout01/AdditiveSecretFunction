@@ -1,4 +1,7 @@
 ﻿using System;
+using AdditiveSecretFunction.Services.Abstract;
+using AdditiveSecretFunction.Services.Concrete;
+using Autofac;
 using CommandLine;
 
 namespace AdditiveSecretFunction
@@ -10,24 +13,27 @@ namespace AdditiveSecretFunction
             var options = new Options();
             Parser.Default.ParseArgumentsStrict(args, options, OnFail);
 
-            var primes = PrimeNumberHelper.GetPrimesLessThan(options.Limit);
-            var secret = SecretService.SecretFunction;
+            var container = BuildContainer();
 
-            foreach (var x in primes)
-            {
-                for (var index = x; index < primes.Count; index++)
-                {
-                    var y = primes[index];
+            var additiveService = container.Resolve<IAdditiveService>();
+            var secretFactory = container.Resolve<SecretFactory>();
 
-                    if (secret(x + y) != secret(x) + secret(y))
-                    {
-                        Console.WriteLine("The secret function is not additive");
-                        Environment.Exit(0);
-                    }
-                }
-            }
+            var secret = secretFactory.CreateNewSecretFunction();
 
-            Console.WriteLine("The secret function is additive");
+            Console.WriteLine(additiveService.IsAdditive(secret, options.Limit)
+                ? "The secret function is additive"
+                : "The secret function is not additive");
+        }
+
+        private static IContainer BuildContainer()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.Register(x => new AdditiveService(x.Resolve<IPrimeNumberService>())).As<IAdditiveService>();
+            builder.Register(x => new PrimeNumberService()).As<IPrimeNumberService>();
+            builder.Register(x => new SecretFactory());
+
+            return builder.Build();
         }
 
         private static void OnFail()
