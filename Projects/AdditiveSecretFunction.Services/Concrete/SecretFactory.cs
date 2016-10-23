@@ -10,9 +10,10 @@ namespace AdditiveSecretFunction.Services.Concrete
         private readonly List<Func<int, int>> _actions = new List<Func<int, int>>
         {
             x => x,
-            x => x + 1,
-            x => x*2,
-            x => x/5
+            x => x + Rnd.Next(100),
+            x => x - Rnd.Next(100),
+            x => x * Rnd.Next(100),
+            x => x / Rnd.Next(1, 100)
         };
 
         public Func<int, int> CreateNewSecretFunction()
