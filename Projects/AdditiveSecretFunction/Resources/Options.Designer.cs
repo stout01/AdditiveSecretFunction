@@ -22,14 +22,14 @@ namespace AdditiveSecretFunction.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Program {
+    internal class Options {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Program() {
+        internal Options() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AdditiveSecretFunction.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AdditiveSecretFunction.Resources.Program", typeof(Program).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AdditiveSecretFunction.Resources.Options", typeof(Options).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace AdditiveSecretFunction.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The secret function is additive.
+        ///   Looks up a localized string similar to Limit must be greater than 1..
         /// </summary>
-        internal static string IsAdditive {
+        internal static string LimitInvalid {
             get {
-                return ResourceManager.GetString("IsAdditive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The secret function is not additive.
-        /// </summary>
-        internal static string IsNotAdditive {
-            get {
-                return ResourceManager.GetString("IsNotAdditive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Try &apos;AdditiveSecretFunction --help&apos; for more information..
-        /// </summary>
-        internal static string TryHelp {
-            get {
-                return ResourceManager.GetString("TryHelp", resourceCulture);
+                return ResourceManager.GetString("LimitInvalid", resourceCulture);
             }
         }
     }

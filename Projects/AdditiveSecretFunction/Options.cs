@@ -2,12 +2,14 @@
 using System.Linq;
 using CommandLine;
 using CommandLine.Text;
+using Resource = AdditiveSecretFunction.Resources.Options;
 
 namespace AdditiveSecretFunction
 {
     public class Options
     {
-        [Option('l', "limit", DefaultValue = 1000, HelpText = "Integer to determine the maximum prime number")]
+        [Option('l', "limit", DefaultValue = 1000,
+             HelpText = "Integer to determine the maximum prime number. Must be greater than 1.")]
         public int Limit { get; set; }
 
         [ParserState]
@@ -36,6 +38,17 @@ namespace AdditiveSecretFunction
 
             help.AddOptions(this);
             return help;
+        }
+
+        public bool Validate()
+        {
+            if (Limit < 2)
+            {
+                Console.WriteLine(Resource.LimitInvalid);
+                return false;
+            }
+
+            return true;
         }
     }
 }

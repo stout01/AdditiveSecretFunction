@@ -14,6 +14,12 @@ namespace AdditiveSecretFunction
             var options = new Options();
             Parser.Default.ParseArgumentsStrict(args, options, OnFail);
 
+            if (!options.Validate())
+            {
+                Console.WriteLine(Resource.TryHelp);
+                Environment.Exit(1);
+            }
+
             var container = BuildContainer();
 
             var additiveService = container.Resolve<IAdditiveService>();
@@ -39,7 +45,7 @@ namespace AdditiveSecretFunction
 
         private static void OnFail()
         {
-            Environment.Exit(-1);
+            Environment.Exit(1);
         }
     }
 }

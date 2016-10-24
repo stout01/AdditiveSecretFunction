@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IsAdditive" xml:space="preserve">
-    <value>The secret function is additive</value>
-  </data>
-  <data name="IsNotAdditive" xml:space="preserve">
-    <value>The secret function is not additive</value>
-  </data>
-  <data name="TryHelp" xml:space="preserve">
-    <value>Try 'AdditiveSecretFunction --help' for more information.</value>
+  <data name="LimitInvalid" xml:space="preserve">
+    <value>Limit must be greater than 1.</value>
   </data>
 </root>
